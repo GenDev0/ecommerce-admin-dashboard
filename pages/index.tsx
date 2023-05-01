@@ -18,7 +18,7 @@ export default function Home() {
     );
   }
   return (
-    <div className='flex items-center bg-blue-700 w-screen h-screen'>
+    <div className='flex items-center bg-blue-700  min-h-screen'>
       <div className='w-full text-center'>
         <button
           onClick={() => signIn("google")}
