@@ -1,32 +1,18 @@
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Home() {
   const { data: session } = useSession();
-
-  if (session) {
-    return (
-      <div className='flex items-center bg-blue-700 w-screen h-screen'>
-        <div className='w-full text-center'>
-          <span>
-            Signed in as {session?.user?.email} <br />
-          </span>
-          <button onClick={() => signOut()} className='bg-white p-2 rounded-lg'>
-            SignOut
-          </button>
-        </div>
-      </div>
-    );
-  }
   return (
-    <div className='flex items-center bg-blue-700  min-h-screen'>
-      <div className='w-full text-center'>
-        <button
-          onClick={() => signIn("google")}
-          className='bg-white p-2 rounded-lg'
-        >
-          Login With Google
-        </button>
-      </div>
+    <div className='flex flex-row items-center justify-center space-x-2 text-blue-900'>
+      <Image
+        className='rounded-full'
+        src={session?.user?.image!}
+        alt={"ProfilePic"}
+        width={40}
+        height={40}
+      />
+      <span className=' text-blue-900'>{session?.user?.name}</span>
     </div>
   );
 }
